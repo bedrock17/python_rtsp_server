@@ -241,6 +241,7 @@ class Client:
 			# Write the RTSP request to be sent.
 			# request = ...
 			request = "TEARDOWN " + "\n" + str(self.rtspSeq)
+			request = request.encode("utf-8")
 			self.rtspSocket.send(request)
 			print ('-'*60 + "\nTEARDOWN request sent to Server...\n" + '-'*60)
 			# Keep track of the sent request.
@@ -259,6 +260,10 @@ class Client:
 		"""Receive RTSP reply from the server."""
 		while True:
 			reply = self.rtspSocket.recv(1024)
+
+			#reply is text 
+			#decode reply
+			reply = reply.decode("utf-8")
 
 			if reply:
 				self.parseRtspReply(reply)
