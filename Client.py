@@ -210,7 +210,8 @@ class Client:
 			# request = ...
 			request = "PLAY " + "\n" + str(self.rtspSeq)
 
-			self.rtspSocket.send(request)
+			sendbuf = request.encode("utf-8")
+			self.rtspSocket.send(sendbuf)
 			print ('-'*60 + "\nPLAY request sent to Server...\n" + '-'*60)
 			# Keep track of the sent request.
 			# self.requestSent = ...
